@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Cheques denunciado</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <style>
+    :root {
+      font-family: Inter, sans-serif;
+      font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+    }
+    @supports (font-variation-settings: normal) {
+      :root {
+        font-family: InterVariable, sans-serif;
+      }
+    }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/franken-wc@latest/dist/css/green.min.css"
+    />
+
+    <script>
+    if (
+      localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
+    <script
+    type="module"
+    src="https://unpkg.com/franken-wc@latest/dist/js/wc.iife.js"
+  ></script>
+    <style>
+    .spinner-custom {
+      display: none;
+    }
+    </style>
+  </head>
+  <body class="bg-background text-foreground">
+    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-center uk-margin">
+      <h1 class="uk-h1">Cheques denunciado</h1>
+      <button class="uk-icon-button" id="theme-toggle">
+        <svg
+          id="theme-toggle-light-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-sun dark:hidden"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2"></path>
+          <path d="M12 20v2"></path>
+          <path d="m4.93 4.93 1.41 1.41"></path>
+          <path d="m17.66 17.66 1.41 1.41"></path>
+          <path d="M2 12h2"></path>
+          <path d="M20 12h2"></path>
+          <path d="m6.34 17.66-1.41 1.41"></path>
+          <path d="m19.07 4.93-1.41 1.41"></path>
+        </svg>
+        <svg
+          id="theme-toggle-dark-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-moon hidden dark:block"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+        </svg>
+
+      </button>
+      <div
+        class="uk-width-1-2@s uk-container uk-margin uk-margin-auto-left uk-text-center"
+      >
+
+        <form id="cheque-form">
+
+          <fieldset class="uk-fieldset">
+            <div class="uk-margin">
+              <select class="uk-select" aria-label="Select" id="bank-select">
+                <option value="" disabled selected>Seleccione un banco</option>
+              </select>
+            </div>
+
+            <div class="uk-margin">
+              <input
+                class="uk-input"
+                type="text"
+                placeholder="Numero del cheque"
+                aria-label="Numero del cheque"
+                id="cheq-number"
+              />
+            </div>
+          </fieldset>
+          <button class="uk-button uk-button-primary uk-width-1-1 " id="submit-button" type="submit">Buscar</button>
+        </form>
+      </div>
+        <div class="uk-container uk-margin-auto">
+          <div uk-spinner class="spinner-custom" id="searching"></div>
+        </div>
+      <div
+        class="uk-width-1-2@s uk-container uk-margin uk-margin-auto"
+      >
+
+        <div id="cheque-info">
+          <!-- Textual information will be displayed here -->
+        </div>
+        <table class="uk-table uk-table-divider" id="detalle-table" hidden="true">
+          <thead>
+            <tr>
+              <th>Sucursal</th>
+              <th>Número de Cuenta</th>
+              <th>Causal</th>
+            </tr>
+          </thead>
+          <tbody id="detalle-table-body">
+            <!-- Rows will be dynamically added here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="uk-position-bottom-left uk-position-small">
+      Crafted with ❤️  and 🧉 by <a href="https://github.com/Alvezgr" target="_blank">alvezgr</a>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const bankSelect = document.getElementById('bank-select');
+      const chequeForm = document.getElementById('cheque-form');
+      const chequeInfo = document.getElementById('cheque-info');
+      const detalleTableBody = document.getElementById('detalle-table-body');
+
+      // Fetch bank options when the select element is first clicked
+      bankSelect.addEventListener('click', function () {
+        if (bankSelect.options.length === 1) { // Check if only the default option exists
+          fetch('https://api.bcra.gob.ar/cheques/v1.0/entidades')
+            .then(response => response.json())
+            .then(data => {
+              if (data.status === 200) {
+                data.results.forEach(entidad => {
+                  const option = document.createElement('option');
+                  option.value = entidad.codigoEntidad;
+                  option.textContent = entidad.denominacion.trim();
+                  bankSelect.appendChild(option);
+                });
+              }
+            })
+            .catch(error => console.error('Error fetching bank entities:', error));
+        }
+      });
+
+      // Handle form submission
+      chequeForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form from submitting the traditional way
+        chequeInfo.innerHTML = '';
+        detalleTableBody.innerHTML = '';
+        const selectedBank = bankSelect.value;
+        const searching = document.getElementById('searching').classList.remove('spinner-custom');
+        const chequeNumber = document.getElementById('cheq-number').value;
+        document.getElementById('detalle-table').hidden = true;
+
+        if (selectedBank && chequeNumber) {
+          fetch(`https://api.bcra.gob.ar/cheques/v1.0/denunciados/${selectedBank}/${chequeNumber}`)
+            .then(response => response.json())
+            .then(data => {
+              chequeInfo.innerHTML = '';
+              detalleTableBody.innerHTML = '';
+
+              if (data.results) {
+                chequeInfo.innerHTML = `
+<p><strong>Número de Cheque:</strong> ${data.results.numeroCheque}</p>
+<p><strong>Denunciado:</strong> ${data.results.denunciado ? `<span class="uk-badge uk-badge-danger">Sí</span>`: `<span class="uk-badge uk-badge-primary">No</span>`}</p>
+<p><strong>Fecha de Procesamiento:</strong> ${data.results.fechaProcesamiento}</p>
+<p><strong>Denominación Entidad:</strong> ${data.results.denominacionEntidad}</p>
+`;
+
+                // Populate the table with details
+                if(data.results.detalles){
+                   document.getElementById('detalle-table').hidden = false;
+
+                data.results.detalles.forEach(detalle => {
+                  const row = document.createElement('tr');
+                  row.innerHTML = `
+<td>${detalle.sucursal}</td>
+<td>${detalle.numeroCuenta}</td>
+<td>${detalle.causal}</td>
+`;
+                  detalleTableBody.appendChild(row);
+                });
+                }
+                
+              document.getElementById('searching').classList.add('spinner-custom');
+              } else {
+                chequeInfo.innerHTML = '<p>No se encontraron detalles para este cheque.</p>';
+                document.getElementById('detalle-table').hidden = true;
+                document.getElementById('searching').classList.add('spinner-custom');
+              }
+            })
+            .catch(error => console.error('Error fetching cheque details:', error));
+        }
+      });
+
+      // Theme toggle functionality
+      var themeToggleBtn = document.getElementById('theme-toggle');
+      themeToggleBtn?.addEventListener('click', function () {
+        if (localStorage.getItem('color-theme')) {
+          if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          }
+        } else {
+          if (document.documentElement.classList.contains('dark')) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('color-theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('color-theme', 'dark');
+          }
+        }
+      });
+    });
+    </script>
+  </body>
+</html>
+
