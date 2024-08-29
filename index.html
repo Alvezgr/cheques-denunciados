@@ -2,27 +2,11 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Cheques denunciado</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheques denunciados</title>
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-
-    <style>
-    :root {
-      font-family: Inter, sans-serif;
-      font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
-    }
-    @supports (font-variation-settings: normal) {
-      :root {
-        font-family: InterVariable, sans-serif;
-      }
-    }
-    </style>
-
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/franken-wc@latest/dist/css/green.min.css"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/franken-wc@latest/dist/css/green.min.css"/>
 
     <script>
     if (
@@ -37,213 +21,338 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
-    <script
-    type="module"
-    src="https://unpkg.com/franken-wc@latest/dist/js/wc.iife.js"
-  ></script>
+    <script type="module" src="https://unpkg.com/franken-wc@latest/dist/js/wc.iife.js" ></script>
     <style>
+    :root {
+      font-family: Inter, sans-serif;
+      font-feature-settings: "liga" 1, "calt" 1; /* fix for Chrome */
+    }
+    @supports (font-variation-settings: normal) {
+      :root {
+        font-family: InterVariable, sans-serif;
+      }
+    }
     .spinner-custom {
       display: none;
     }
     </style>
   </head>
   <body class="bg-background text-foreground">
-    <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-center uk-margin">
-      <h1 class="uk-h1">Cheques denunciado</h1>
-      <button class="uk-icon-button" id="theme-toggle">
-        <svg
-          id="theme-toggle-light-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-sun dark:hidden"
-        >
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2"></path>
-          <path d="M12 20v2"></path>
-          <path d="m4.93 4.93 1.41 1.41"></path>
-          <path d="m17.66 17.66 1.41 1.41"></path>
-          <path d="M2 12h2"></path>
-          <path d="M20 12h2"></path>
-          <path d="m6.34 17.66-1.41 1.41"></path>
-          <path d="m19.07 4.93-1.41 1.41"></path>
-        </svg>
-        <svg
-          id="theme-toggle-dark-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="lucide lucide-moon hidden dark:block"
-        >
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-        </svg>
+    <div class="uk-flex uk-flex-column uk-height-1-1">
+      <div class="top-content" uk-height-viewport="offset-bottom: true">
+        <div class="uk-width-1-2@s uk-container uk-margin uk-margin-auto-left uk-text-center">
+          <div class="uk-flex uk-flex-column uk-flex-middle uk-flex-center uk-margin">
+            <h1 class="uk-h1">Cheques denunciados</h1>
+            <button class="uk-icon-button" id="theme-toggle">
+              <svg
+                id="theme-toggle-light-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-sun dark:hidden"
+              >
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg
+                id="theme-toggle-dark-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-moon hidden dark:block"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
 
-      </button>
-      <div
-        class="uk-width-1-2@s uk-container uk-margin uk-margin-auto-left uk-text-center"
-      >
+            </button>
+          </div>
+          <div
+            class="uk-width-1-2@s uk-container uk-margin uk-margin-auto-left uk-text-center"
+          >
 
-        <form id="cheque-form">
+            <form id="cheque-form">
 
-          <fieldset class="uk-fieldset">
-            <div class="uk-margin">
-              <select class="uk-select" aria-label="Select" id="bank-select">
-                <option value="" disabled selected>Seleccione un banco</option>
-              </select>
+              <fieldset class="uk-fieldset">
+                <div class="uk-margin">
+                  <uk-select searchable uk-cloak aria-label="Select" id="bank-select" placeholder="Selecciona un banco">
+                    <option value="BANCO BANEX S.A.">BANCO BANEX S.A.</option>
+                    <option value="BANCO BBVA ARGENTINA S.A.">BANCO BBVA ARGENTINA S.A.</option>
+                    <option value="BANCO BICA S.A.">BANCO BICA S.A.</option>
+                    <option value="BANCO BMA S.A.U.">BANCO BMA S.A.U.</option>
+                    <option value="BANCO BRADESCO ARGENTINA S.A.U.">BANCO BRADESCO ARGENTINA S.A.U.</option>
+                    <option value="BANCO CMF S.A.">BANCO CMF S.A.</option>
+                    <option value="BANCO COINAG S.A.">BANCO COINAG S.A.</option>
+                    <option value="BANCO COLUMBIA S.A.">BANCO COLUMBIA S.A.</option>
+                    <option value="BANCO COMAFI SOCIEDAD ANONIMA">BANCO COMAFI SOCIEDAD ANONIMA</option>
+                    <option value="BANCO CREDICOOP COOPERATIVO LIMITADO">BANCO CREDICOOP COOPERATIVO LIMITADO</option>
+                    <option value="BANCO DE COMERCIO S.A.">BANCO DE COMERCIO S.A.</option>
+                    <option value="BANCO DE CORRIENTES S.A.">BANCO DE CORRIENTES S.A.</option>
+                    <option value="BANCO DE FORMOSA S.A.">BANCO DE FORMOSA S.A.</option>
+                    <option value="BANCO DE GALICIA Y BUENOS AIRES S.A.U.">BANCO DE GALICIA Y BUENOS AIRES S.A.U.</option>
+                    <option value="BANCO DE LA CIUDAD DE BUENOS AIRES">BANCO DE LA CIUDAD DE BUENOS AIRES</option>
+                    <option value="BANCO DE LA NACION ARGENTINA">BANCO DE LA NACION ARGENTINA</option>
+                    <option value="BANCO DE LA PAMPA S.E.M.">BANCO DE LA PAMPA S.E.M.</option>
+                    <option value="BANCO DE LA PROVINCIA DE BUENOS AIRES">BANCO DE LA PROVINCIA DE BUENOS AIRES</option>
+                    <option value="BANCO DE LA PROVINCIA DE CORDOBA S.A.">BANCO DE LA PROVINCIA DE CORDOBA S.A.</option>
+                    <option value="BANCO DE SAN JUAN S.A.">BANCO DE SAN JUAN S.A.</option>
+                    <option value="BANCO DE SANTA CRUZ S.A.">BANCO DE SANTA CRUZ S.A.</option>
+                    <option value="BANCO DE SANTIAGO DEL ESTERO S.A.">BANCO DE SANTIAGO DEL ESTERO S.A.</option>
+                    <option value="BANCO DE SERVICIOS Y TRANSACCIONES S.A.">BANCO DE SERVICIOS Y TRANSACCIONES S.A.</option>
+                    <option value="BANCO DE VALORES S.A.">BANCO DE VALORES S.A.</option>
+                    <option value="BANCO DEL CHUBUT S.A.">BANCO DEL CHUBUT S.A.</option>
+                    <option value="BANCO DEL SOL S.A.">BANCO DEL SOL S.A.</option>
+                    <option value="BANCO DEL TUCUMAN S.A.">BANCO DEL TUCUMAN S.A.</option>
+                    <option value="BANCO DINO S.A.">BANCO DINO S.A.</option>
+                    <option value="BANCO FINANSUR S.A.">BANCO FINANSUR S.A.</option>
+                    <option value="BANCO HIPOTECARIO S.A.">BANCO HIPOTECARIO S.A.</option>
+                    <option value="BANCO INDUSTRIAL">BANCO INDUSTRIAL</option>
+                    <option value="BANCO JULIO SOCIEDAD ANONIMA">BANCO JULIO SOCIEDAD ANONIMA</option>
+                    <option value="BANCO MACRO S.A.">BANCO MACRO S.A.</option>
+                    <option value="BANCO MARIVA S.A.">BANCO MARIVA S.A.</option>
+                    <option value="BANCO MASVENTAS S.A.">BANCO MASVENTAS S.A.</option>
+                    <option value="BANCO MERIDIAN S.A.">BANCO MERIDIAN S.A.</option>
+                    <option value="BANCO MUNICIPAL DE ROSARIO">BANCO MUNICIPAL DE ROSARIO</option>
+                    <option value="BANCO PATAGONIA  S.A.">BANCO PATAGONIA  S.A.</option>
+                    <option value="BANCO PIANO S.A.">BANCO PIANO S.A.</option>
+                    <option value="BANCO PRIVADO DE INVERSIONES S.A.">BANCO PRIVADO DE INVERSIONES S.A.</option>
+                    <option value="BANCO PROVINCIA DE TIERRA DEL FUEGO">BANCO PROVINCIA DE TIERRA DEL FUEGO</option>
+                    <option value="BANCO PROVINCIA DEL NEUQUEN S.A.">BANCO PROVINCIA DEL NEUQUEN S.A.</option>
+                    <option value="BANCO REGIONAL DE CUYO S.A.">BANCO REGIONAL DE CUYO S.A.</option>
+                    <option value="BANCO RIOJA SOCIEDAD ANÓNIMA UNIPERSONAL">BANCO RIOJA SOCIEDAD ANÓNIMA UNIPERSONAL</option>
+                    <option value="BANCO ROELA S.A.">BANCO ROELA S.A.</option>
+                    <option value="BANCO SAENZ S.A.">BANCO SAENZ S.A.</option>
+                    <option value="BANCO SANTANDER ARGENTINA S.A.">BANCO SANTANDER ARGENTINA S.A.</option>
+                    <option value="BANCO SUCREDITO REGIONAL S.A.U.">BANCO SUCREDITO REGIONAL S.A.U.</option>
+                    <option value="BANCO SUPERVIELLE S.A.">BANCO SUPERVIELLE S.A.</option>
+                    <option value="BIBANK S.A.">BIBANK S.A.</option>
+                    <option value="BNP PARIBAS">BNP PARIBAS</option>
+                    <option value="CITIBANK N.A.">CITIBANK N.A.</option>
+                    <option value="HSBC BANK ARGENTINA S.A.">HSBC BANK ARGENTINA S.A.</option>
+                    <option value="INDUSTRIAL AND COMMERCIAL BANK OF CHINA">INDUSTRIAL AND COMMERCIAL BANK OF CHINA</option>
+                    <option value="MUFG BANK, LTD">MUFG BANK, LTD</option>
+                    <option value="NUEVO BANCO DE ENTRE RÍOS S.A.">NUEVO BANCO DE ENTRE RÍOS S.A.</option>
+                    <option value="NUEVO BANCO DEL CHACO S. A.">NUEVO BANCO DEL CHACO S. A.</option>
+                    <option value="The Royal Bank of Scotland N.V.">The Royal Bank of Scotland N.V.</option>
+                  </uk-select>
+                </div>
+
+                <div class="uk-margin">
+                  <input
+                    class="uk-input"
+                    type="text"
+                    placeholder="Numero del cheque"
+                    aria-label="Numero del cheque"
+                    id="cheq-number"
+                  />
+                </div>
+              </fieldset>
+              <button class="uk-button uk-button-primary uk-width-1-1 " id="submit-button" type="submit">Buscar</button>
+            </form>
+          </div>
+          <div class="uk-container uk-margin-auto">
+            <div uk-spinner class="spinner-custom" id="searching"></div>
+          </div>
+          <div
+            class="uk-width-1-2@s uk-container uk-margin uk-margin-auto"
+          >
+
+            <div id="cheque-info">
+              <!-- Textual information will be displayed here -->
             </div>
-
-            <div class="uk-margin">
-              <input
-                class="uk-input"
-                type="text"
-                placeholder="Numero del cheque"
-                aria-label="Numero del cheque"
-                id="cheq-number"
-              />
-            </div>
-          </fieldset>
-          <button class="uk-button uk-button-primary uk-width-1-1 " id="submit-button" type="submit">Buscar</button>
-        </form>
-      </div>
-        <div class="uk-container uk-margin-auto">
-          <div uk-spinner class="spinner-custom" id="searching"></div>
+            <table class="uk-table uk-table-divider" id="detalle-table" hidden="true">
+              <thead>
+                <tr>
+                  <th>Sucursal</th>
+                  <th>Número de Cuenta</th>
+                  <th>Causal</th>
+                </tr>
+              </thead>
+              <tbody id="detalle-table-body">
+                <!-- Rows will be dynamically added here -->
+              </tbody>
+            </table>
+          </div>
         </div>
-      <div
-        class="uk-width-1-2@s uk-container uk-margin uk-margin-auto"
-      >
 
-        <div id="cheque-info">
-          <!-- Textual information will be displayed here -->
-        </div>
-        <table class="uk-table uk-table-divider" id="detalle-table" hidden="true">
-          <thead>
-            <tr>
-              <th>Sucursal</th>
-              <th>Número de Cuenta</th>
-              <th>Causal</th>
-            </tr>
-          </thead>
-          <tbody id="detalle-table-body">
-            <!-- Rows will be dynamically added here -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="uk-position-bottom-left uk-position-small">
-      Crafted with ❤️  and 🧉 by <a href="https://github.com/Alvezgr" target="_blank">alvezgr</a>
-    </div>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const bankSelect = document.getElementById('bank-select');
-      const chequeForm = document.getElementById('cheque-form');
-      const chequeInfo = document.getElementById('cheque-info');
-      const detalleTableBody = document.getElementById('detalle-table-body');
-
-      // Fetch bank options when the select element is first clicked
-      bankSelect.addEventListener('click', function () {
-        if (bankSelect.options.length === 1) { // Check if only the default option exists
-          fetch('https://api.bcra.gob.ar/cheques/v1.0/entidades')
-            .then(response => response.json())
-            .then(data => {
-              if (data.status === 200) {
-                data.results.forEach(entidad => {
-                  const option = document.createElement('option');
-                  option.value = entidad.codigoEntidad;
-                  option.textContent = entidad.denominacion.trim();
-                  bankSelect.appendChild(option);
-                });
-              }
-            })
-            .catch(error => console.error('Error fetching bank entities:', error));
+        <script>
+        const banksIDs = {
+          "BANCO BANEX S.A.": 297,
+          "BANCO BBVA ARGENTINA S.A.": 17,
+          "BANCO BMA S.A.U.": 259,
+          "BANCO BRADESCO ARGENTINA S.A.U.": 336,
+          "BANCO CMF S.A.": 319,
+          "BANCO COINAG S.A.": 431,
+          "BANCO COLUMBIA S.A.": 389,
+          "BANCO COMAFI SOCIEDAD ANONIMA": 299,
+          "BANCO CREDICOOP COOPERATIVO LIMITADO": 191,
+          "BANCO DE COMERCIO S.A.": 432,
+          "BANCO DE CORRIENTES S.A.": 94,
+          "BANCO DE FORMOSA S.A.": 315,
+          "BANCO DE GALICIA Y BUENOS AIRES S.A.U.": 7,
+          "BANCO DE LA CIUDAD DE BUENOS AIRES": 29,
+          "BANCO DE LA NACION ARGENTINA": 11,
+          "BANCO DE LA PAMPA S.E.M.": 93,
+          "BANCO DE LA PROVINCIA DE BUENOS AIRES": 14,
+          "BANCO DE LA PROVINCIA DE CORDOBA S.A.": 20,
+          "BANCO DE SAN JUAN S.A.": 45,
+          "BANCO DE SANTA CRUZ S.A.": 86,
+          "BANCO DE SANTIAGO DEL ESTERO S.A.": 321,
+          "BANCO DE SERVICIOS Y TRANSACCIONES S.A.": 338,
+          "BANCO DE VALORES S.A.": 198,
+          "BANCO DEL CHUBUT S.A.": 83,
+          "BANCO DEL SOL S.A.": 310,
+          "BANCO DEL TUCUMAN S.A.": 60,
+          "BANCO DINO S.A.": 448,
+          "BANCO FINANSUR S.A.": 303,
+          "BANCO HIPOTECARIO S.A.": 44,
+          "BANCO INDUSTRIAL": 322,
+          "BANCO JULIO SOCIEDAD ANONIMA": 305,
+          "BANCO MACRO S.A.": 285,
+          "BANCO MARIVA S.A.": 254,
+          "BANCO MASVENTAS S.A.": 341,
+          "BANCO MERIDIAN S.A.": 281,
+          "BANCO MUNICIPAL DE ROSARIO": 65,
+          "BANCO PATAGONIA S.A.": 34,
+          "BANCO PIANO S.A.": 301,
+          "BANCO PRIVADO DE INVERSIONES S.A.": 306,
+          "BANCO PROVINCIA DE TIERRA DEL FUEGO": 268,
+          "BANCO PROVINCIA DEL NEUQUEN S.A.": 97,
+          "BANCO REGIONAL DE CUYO S.A.": 79,
+          "BANCO RIOJA SOCIEDAD ANÓNIMA UNIPERSONAL": 309,
+          "BANCO ROELA S.A.": 247,
+          "BANCO SAENZ S.A.": 277,
+          "BANCO SANTANDER ARGENTINA S.A.": 72,
+          "BANCO SUCREDITO REGIONAL S.A.U.": 435,
+          "BANCO SUPERVIELLE S.A.": 27,
+          "BIBANK S.A.": 147,
+          "BNP PARIBAS": 266,
+          "CITIBANK N.A.": 16,
+          "HSBC BANK ARGENTINA S.A.": 150,
+          "INDUSTRIAL AND COMMERCIAL BANK OF CHINA": 15,
+          "MUFG BANK, LTD": 18,
+          "NUEVO BANCO DE ENTRE RÍOS S.A.": 386,
+          "NUEVO BANCO DE SANTA FE SOCIEDAD ANONIMA": 330,
+          "NUEVO BANCO DEL CHACO S. A.": 311,
+          "The Royal Bank of Scotland N.V.": 5
         }
-      });
 
-      // Handle form submission
-      chequeForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent form from submitting the traditional way
-        chequeInfo.innerHTML = '';
-        detalleTableBody.innerHTML = '';
-        const selectedBank = bankSelect.value;
-        const searching = document.getElementById('searching').classList.remove('spinner-custom');
-        const chequeNumber = document.getElementById('cheq-number').value;
-        document.getElementById('detalle-table').hidden = true;
+        document.addEventListener('DOMContentLoaded', function () {
+          const bankSelect = document.getElementById('bank-select');
+          const chequeForm = document.getElementById('cheque-form');
+          const chequeInfo = document.getElementById('cheque-info');
+          const detalleTableBody = document.getElementById('detalle-table-body');
 
-        if (selectedBank && chequeNumber) {
-          fetch(`https://api.bcra.gob.ar/cheques/v1.0/denunciados/${selectedBank}/${chequeNumber}`)
-            .then(response => response.json())
-            .then(data => {
-              chequeInfo.innerHTML = '';
-              detalleTableBody.innerHTML = '';
+          // Handle form submission
+          chequeForm.addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form from submitting the traditional way
+            chequeInfo.innerHTML = '';
+            detalleTableBody.innerHTML = '';
+            const selectedBank = bankSelect.innerText;
+            const selectedBankId = banksIDs[selectedBank];
+            const searching = document.getElementById('searching').classList.remove('spinner-custom');
+            const chequeNumber = document.getElementById('cheq-number').value;
+            document.getElementById('detalle-table').hidden = true;
 
-              if (data.results) {
-                chequeInfo.innerHTML = `
+            if (selectedBankId && chequeNumber) {
+              fetch(`https://api.bcra.gob.ar/cheques/v1.0/denunciados/${selectedBankId}/${chequeNumber}`)
+                .then(response => response.json())
+                .then(data => {
+                  chequeInfo.innerHTML = '';
+                  detalleTableBody.innerHTML = '';
+
+                  if (data.results) {
+                    chequeInfo.innerHTML = `
 <p><strong>Número de Cheque:</strong> ${data.results.numeroCheque}</p>
 <p><strong>Denunciado:</strong> ${data.results.denunciado ? `<span class="uk-badge uk-badge-danger">Sí</span>`: `<span class="uk-badge uk-badge-primary">No</span>`}</p>
 <p><strong>Fecha de Procesamiento:</strong> ${data.results.fechaProcesamiento}</p>
 <p><strong>Denominación Entidad:</strong> ${data.results.denominacionEntidad}</p>
 `;
 
-                // Populate the table with details
-                if(data.results.detalles){
-                   document.getElementById('detalle-table').hidden = false;
+                    // Populate the table with details
+                    if(data.results.detalles){
+                      document.getElementById('detalle-table').hidden = false;
 
-                data.results.detalles.forEach(detalle => {
-                  const row = document.createElement('tr');
-                  row.innerHTML = `
+                      data.results.detalles.forEach(detalle => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
 <td>${detalle.sucursal}</td>
 <td>${detalle.numeroCuenta}</td>
 <td>${detalle.causal}</td>
 `;
-                  detalleTableBody.appendChild(row);
-                });
-                }
-                
-              document.getElementById('searching').classList.add('spinner-custom');
-              } else {
-                chequeInfo.innerHTML = '<p>No se encontraron detalles para este cheque.</p>';
-                document.getElementById('detalle-table').hidden = true;
-                document.getElementById('searching').classList.add('spinner-custom');
-              }
-            })
-            .catch(error => console.error('Error fetching cheque details:', error));
-        }
-      });
+                        detalleTableBody.appendChild(row);
+                      });
+                    }
 
-      // Theme toggle functionality
-      var themeToggleBtn = document.getElementById('theme-toggle');
-      themeToggleBtn?.addEventListener('click', function () {
-        if (localStorage.getItem('color-theme')) {
-          if (localStorage.getItem('color-theme') === 'light') {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-          }
-        } else {
-          if (document.documentElement.classList.contains('dark')) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-          } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-          }
-        }
-      });
-    });
-    </script>
+                    document.getElementById('searching').classList.add('spinner-custom');
+                  } else {
+                    chequeInfo.innerHTML = '<p>No se encontraron detalles para este cheque.</p>';
+                    document.getElementById('detalle-table').hidden = true;
+                    document.getElementById('searching').classList.add('spinner-custom');
+                  }
+                })
+                .catch(error => console.error('Error fetching cheque details:', error));
+            }
+            else{
+              chequeInfo.innerHTML = '<p>No se encontraron detalles para este cheque.</p>';
+              document.getElementById('detalle-table').hidden = true;
+              document.getElementById('searching').classList.add('spinner-custom');
+            }
+          });
+
+          // Theme toggle functionality
+          var themeToggleBtn = document.getElementById('theme-toggle');
+          themeToggleBtn?.addEventListener('click', function () {
+            if (localStorage.getItem('color-theme')) {
+              if (localStorage.getItem('color-theme') === 'light') {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+              } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+              }
+            } else {
+              if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+              } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+              }
+            }
+          });
+        });
+        </script>
+      </div>
+      <div class="bottom-content">
+        <footer class="uk-container uk-container-xlarge py-6">
+          <div class="flex flex-col items-center">
+            <p class="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
+              Crafted with ❤️  and 🧉 by <a class="uk-link" href="https://github.com/Alvezgr" target="_blank">alvezgr</a>
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
   </body>
+
 </html>
 
